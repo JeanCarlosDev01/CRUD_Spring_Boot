@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Productos | Registrados</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Implementacion de la libreria de estilos css bootstrap -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    </head>
+    <body>
+        <header>
+        </header>
+        <div class="container ">
+            <h1 class="mt-4">Lista de productos Registrados</h1>
+            <a class="btn btn-primary" th:href="@{/productos/registrar}">Registrar producto</a>
+            <table class="table table-striped table-hover table-bordered mt-4">
+                <thead class="--bs-body-color">
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombre</th>
+                        <th>Categoría</th>
+                        <th>Descripción</th>
+                        <th>Precio</th>
+                        <th>Editar/Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Cuerpo de la tabla donde se cargan los datos de la lista de objetos por medio de un bucle -->
+                    <tr th:each="producto : ${productos}">
+                        <td th:text="${producto.prId}">Id</td>
+                        <td th:text="${producto.prNombre}">Nombre</td>
+                        <td th:text="${producto.prCategoria}">Categoría</td>
+                        <td th:text="${producto.prDesc}">Descripción</td>
+                        <td th:text="${producto.prPrecio}">Precio</td>
+                        <td>
+                                <a class="btn btn-success" th:href="@{/productos/editar/{id}(id=${producto.prId})}">Editar</a> 
+                                <a class="btn btn-danger" th:href="@{/productos/{id}(id=${producto.prId})}">Eliminar</a> 
+                        </td>
+                    </tr>
+                </tbody>               
+            </table>
+        </div>
+    </body>
+</html>
